@@ -1,6 +1,13 @@
 #/bin/sh
 # My Ubuntu setup script
 
+read -r -p "run apt update & upgrade ? [y/N] " apt_up
+apt_up=${apt_up,,} 
+
+if [[ "$apt_up" =~ ^(yes|y)$ ]]; then
+sudo apt update && sudo apt upgrade -y
+fi
+
 # Basic apps
 sudo apt install git -y
 sudo snap install slack --classic
