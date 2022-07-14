@@ -60,6 +60,7 @@ sudo apt install netdiscover # USAGE: # sudo netdiscover -r 192.168.0.1/16
 if [[ "$nvidia_install" =~ ^(yes|y)$ ]]; then
   ubuntu-drivers devices
   sudo ubuntu-drivers install
+  cat /proc/driver/nvidia/version
 fi
 
 # Remove sudo password
