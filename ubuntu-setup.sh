@@ -4,6 +4,9 @@
 read -r -p "run apt update & upgrade ? [y/N] " apt_up
 apt_up=${apt_up,,} 
 
+read -r -p "Do You want install Nvidia driver recommended version [y/N] ? " nvidia_install
+
+
 if [[ "$apt_up" =~ ^(yes|y)$ ]]; then
 sudo apt update && sudo apt upgrade -y
 fi
@@ -50,9 +53,14 @@ sudo apt install btop
 sudo apt install netdiscover # USAGE: # sudo netdiscover -r 192.168.0.1/16
 
 # Install NVIDIA driver.
-sudo apt install gcc make
-wget https://us.download.nvidia.com/XFree86/Linux-x86_64/510.68.02/NVIDIA-Linux-x86_64-510.68.02.run
-sudo bash NVIDIA-Linux-x86_64-510.68.02.run 
+# sudo apt install gcc make
+# wget https://us.download.nvidia.com/XFree86/Linux-x86_64/510.68.02/NVIDIA-Linux-x86_64-510.68.02.run
+# sudo bash NVIDIA-Linux-x86_64-510.68.02.run 
+
+if [[ "$nvidia_install" =~ ^(yes|y)$ ]]; then
+  ubuntu-drivers devices
+  sudo ubuntu-drivers install
+fi
 
 # Remove sudo password
 sudo sh -c 'echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
