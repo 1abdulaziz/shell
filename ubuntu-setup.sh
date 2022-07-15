@@ -1,7 +1,7 @@
 #/bin/sh
 # My Ubuntu setup script
 
-read -r -p "run apt update & upgrade ? [y/N] " apt_up
+read -r -p "do you want Update and upgrade all packages ? [y/N] " apt_up
 apt_up=${apt_up,,} # Converting to lowercase
 
 read -r -p "Do You want install Nvidia driver recommended version [y/N] ? " nvidia_install
