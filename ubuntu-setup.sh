@@ -2,9 +2,10 @@
 # My Ubuntu setup script
 
 read -r -p "run apt update & upgrade ? [y/N] " apt_up
-apt_up=${apt_up,,} 
+apt_up=${apt_up,,} # Converting to lowercase
 
 read -r -p "Do You want install Nvidia driver recommended version [y/N] ? " nvidia_install
+nvidia_install=${nvidia_install,,} # Converting to lowercase
 
 
 if [[ "$apt_up" =~ ^(yes|y)$ ]]; then
