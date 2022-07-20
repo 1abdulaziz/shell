@@ -5,6 +5,8 @@
 sudo dnf update
 sudo dnf install git -y
 sudo dnf install snapd -y
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install google-chat-electron
 sudo snap install slack --classic
 sudo snap install spotify
 sudo snap install phpstorm --classic
