@@ -6,6 +6,7 @@ sudo dnf update
 sudo dnf install git -y
 sudo dnf install snapd -y
 sudo dnf install google-chrome -y
+sudo dnf install snapd -y
 sudo snap install slack --classic
 sudo snap install spotify
 sudo snap install phpstorm --classic
