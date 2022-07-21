@@ -21,6 +21,7 @@ sudo snap install code --classic
 sudo snap install evernote-web-client
 sudo snap install notion-snap
 sudo snap install notepad-plus-plus
+sudo snap install google-chat-electron
 
 # Install docker
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
