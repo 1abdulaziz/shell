@@ -1,5 +1,6 @@
 #/bin/sh
 # My Ubuntu setup script
+# @todo: https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04
 
 read -r -p "do you want Update and upgrade all packages ? [y/N] " apt_up
 apt_up=${apt_up,,} # Converting to lowercase
@@ -7,10 +8,13 @@ apt_up=${apt_up,,} # Converting to lowercase
 read -r -p "Do You want install Nvidia driver recommended version [y/N] ? " nvidia_install
 nvidia_install=${nvidia_install,,} # Converting to lowercase
 
+read -r -p "Do You want install android studio [y/N] ? " android_studio
+android_studio=${android_studio,,} # Converting to lowercase
 
 if [[ "$apt_up" =~ ^(yes|y)$ ]]; then
 sudo apt update && sudo apt upgrade -y
 fi
+
 
 # Basic apps
 sudo apt install git -y
@@ -63,6 +67,13 @@ if [[ "$nvidia_install" =~ ^(yes|y)$ ]]; then
   ubuntu-drivers devices
   sudo ubuntu-drivers install
   cat /proc/driver/nvidia/version
+fi
+
+if [[ "$android_studio" =~ ^(yes|y)$ ]]; then
+sudo apt install openjdk-11-jdk -y
+sudo add-apt-repository ppa:maarten-fonville/android-studio
+sudo apt update
+sudo apt install android-studio -y
 fi
 
 # Remove sudo password
