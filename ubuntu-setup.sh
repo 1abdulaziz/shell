@@ -1,5 +1,20 @@
 #/bin/sh
 # My Ubuntu setup script
+# @todo: https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04
+
+read -r -p "do you want Update and upgrade all packages ? [y/N] " apt_up
+apt_up=${apt_up,,} # Converting to lowercase
+
+read -r -p "Do You want install Nvidia driver recommended version [y/N] ? " nvidia_install
+nvidia_install=${nvidia_install,,} # Converting to lowercase
+
+read -r -p "Do You want install android studio [y/N] ? " android_studio
+android_studio=${android_studio,,} # Converting to lowercase
+
+if [[ "$apt_up" =~ ^(yes|y)$ ]]; then
+sudo apt update && sudo apt upgrade -y
+fi
+
 
 # Basic apps
 sudo apt install git -y
@@ -9,6 +24,8 @@ sudo snap install phpstorm --classic
 sudo snap install code --classic
 sudo snap install evernote-web-client
 sudo snap install notion-snap
+sudo snap install notepad-plus-plus
+sudo snap install google-chat-electron
 sudo snap install termius-app
 
 # Install docker
@@ -50,9 +67,22 @@ sudo apt install guake # hot window terminal
 #wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
 
 # Install NVIDIA driver.
-sudo apt install gcc make
-wget https://us.download.nvidia.com/XFree86/Linux-x86_64/510.68.02/NVIDIA-Linux-x86_64-510.68.02.run
-sudo bash NVIDIA-Linux-x86_64-510.68.02.run 
+# sudo apt install gcc make
+# wget https://us.download.nvidia.com/XFree86/Linux-x86_64/510.68.02/NVIDIA-Linux-x86_64-510.68.02.run
+# sudo bash NVIDIA-Linux-x86_64-510.68.02.run
+
+if [[ "$nvidia_install" =~ ^(yes|y)$ ]]; then
+  ubuntu-drivers devices
+  sudo ubuntu-drivers install
+  cat /proc/driver/nvidia/version
+fi
+
+if [[ "$android_studio" =~ ^(yes|y)$ ]]; then
+sudo apt install openjdk-11-jdk -y
+sudo add-apt-repository ppa:maarten-fonville/android-studio
+sudo apt update
+sudo apt install android-studio -y
+fi
 
 # Remove sudo password
 sudo sh -c 'echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
@@ -73,7 +103,7 @@ sudo sh -c 'echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 
 ## Quick re-install docker (data loss)
 # sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli
-# sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce  
+# sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
 # sudo rm -rf /var/lib/docker/volumes && sudo rm -rf /var/lib/docker/trust && sudo rm -rf /var/lib/docker/tmp && sudo rm -rf /var/lib/docker/swarm && sudo rm -rf /var/lib/docker/runtimes && sudo rm -rf /var/lib/docker/plugins && sudo rm -rf /var/lib/docker/network && sudo rm -rf /var/lib/docker/image && sudo rm -rf /var/lib/docker/containers && sudo rm -rf /var/lib/docker/buildkit
 # sudo apt install docker-ce && sudo systemctl status docker
 # wget https://files.lando.dev/installer/lando-x64-stable.deb && sudo dpkg -i lando-x64-stable.deb && sudo rm -rf lando-x64-stable.deb
