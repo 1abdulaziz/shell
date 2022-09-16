@@ -13,7 +13,7 @@ sudo snap install phpstorm --classic
 sudo snap install code --classic
 sudo snap install evernote-web-client
 sudo snap install notion-snap
-
+sudo dnf install google-chrome -y
 
 # install chrome
 sudo dnf install fedora-workstation-repositories

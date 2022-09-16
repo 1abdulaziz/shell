@@ -26,6 +26,7 @@ sudo snap install evernote-web-client
 sudo snap install notion-snap
 sudo snap install notepad-plus-plus
 sudo snap install google-chat-electron
+sudo snap install termius-app
 
 # Install docker
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
@@ -57,6 +58,13 @@ sudo apt install albert -y
 # Install some useful cli tools
 sudo apt install btop
 sudo apt install netdiscover # USAGE: # sudo netdiscover -r 192.168.0.1/16
+sudo apt install net-tools # ifconfig command
+sudo apt install tree # tree command
+sudo apt install guake # hot window terminal
+
+# install nala
+#echo "deb https://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+#wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
 
 # Install NVIDIA driver.
 # sudo apt install gcc make

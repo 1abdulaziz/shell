@@ -3,6 +3,10 @@
 # Script to clone and run a new website for local environment from a git repository.
 # The script will prompt a two questions (1. type of the installation) (2. the git repo URL)
 
+# Todo
+# - handle exceptions in the installation process in case of any errors like minimum-stability issues
+# - require all module dependencies
+
 _print_type_name () {
   _typeName='unknown'
   if [[ "$_installationType" == 1 ]] ;
@@ -91,15 +95,17 @@ if [[ "$_installationType" == 1 ]] ;
     cd ..
 fi
 
+sed -i "/\"minimum-stability\"/c\    \"minimum-stability\"\: \"dev\"\," composer.json
+
 # requiring some recommended packages
-lando composer require drupal/admin_toolbar drupal/devel drush/drush -n
+lando composer require drupal/admin_toolbar drupal/devel drush/drush drupal/masquerade:2.x-dev -n
 echo 'the recommended packages has been downloaded'
 
 # start installing Drupal website
 lando drush si standard --db-url=mysql://drupal9:drupal9@database:3306/drupal9 --site-name=automated -y --account-pass=admin -y
 echo 'Drupal website has been installed successfully'
 
-lando drush en admin_toolbar_tools devel -y
+lando drush en admin_toolbar_tools devel masquerade -y
 lando drush pmu update -y
 chmod -R 0777 web/sites/default
 
@@ -108,6 +114,8 @@ sh -c "echo '\$config['\''system.logging'\'']['\''error_level'\''] = '\''verbose
 sh -c "echo '\$config['\''system.performance'\'']['\''css'\'']['\''preprocess'\''] = FALSE;' >> web/sites/default/settings.php"
 sh -c "echo '\$config['\''system.performance'\'']['\''js'\'']['\''preprocess'\''] = FALSE;' >> web/sites/default/settings.php"
 lando drush cset devel.settings devel_dumper var_dumper -y
+lando drush theme:enable bartik -y
+lando drush config-set system.theme default bartik -y
 lando drush cr
 
 # create demo users
