@@ -26,5 +26,5 @@ _type_composer_create_symfony () {
 _type_composer_create_symfony
 
 lando composer self-update
-
+lando composer require mailgun-mailer
 lando rebuild -y
