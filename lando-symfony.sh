@@ -31,8 +31,8 @@ lando ssh --user root --command "apt-get update && apt-get install wget && wget 
 lando ssh --user root --command "git config --global user.email 'aziz.sa03@gmail.com' && git config --global user.name 'abdulaziz zaid'"
 lando ssh --user root --command "mv /root/.symfony5/bin/symfony /usr/local/bin/symfony"
 lando symfony new --webapp $_projectShortName 
-lando ssh --user root --command "mv /app/$_projectShortName/* /app"
-lando ssh --user root --command "mv /app/$_projectShortName/.* /app"
+mv $_projectShortName/* ./ 
+mv $_projectShortName/.* ./ 
 
 lando composer require mailgun-mailer
 lando rebuild -y
