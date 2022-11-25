@@ -36,5 +36,3 @@ mv $_projectShortName/.* ./
 
 lando composer require mailgun-mailer
 lando rebuild -y
-
-
