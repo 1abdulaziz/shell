@@ -17,8 +17,8 @@ cat <<END >.lando.yml
 name: $_projectShortName
 recipe: symfony
 config:
-  webroot: web
-  php: "8.0"
+  webroot: public
+  php: "8.1"
 END
 }
 
