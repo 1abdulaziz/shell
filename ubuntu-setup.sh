@@ -95,7 +95,7 @@ sudo sh -c 'echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 #echo 'source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh' >> ~/.zshrc
 #echo 'alias ll="ls -lha"' >>~/.zshrc
 #sudo chsh -s $(which zsh)
-# - if zsh history not working run blowe command @see: https://stackoverflow.com/questions/12281833/zsh-shell-history-not-working
+# - if ZSH history is not working run the below command @see: https://stackoverflow.com/questions/12281833/zsh-shell-history-not-working
 #echo 'SAVEHIST=1000' >>~/.zshrc
 #echo 'HISTFILE=~/.zsh_history' >>~/.zshrc
 
